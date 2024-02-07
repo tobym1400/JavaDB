@@ -23,13 +23,13 @@ public class Db {
         }
     } 
 
-    public static void createTable() {
+    public static void createTable(int schoolYear) {
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         Statement stmt = conn.createStatement();
     ) {
         String sql = "USE STUDENTS";
         stmt.executeUpdate(sql);
-        sql = "CREATE TABLE YEAR8 (id INT NOT NULL, name VARCHAR(30), PRIMARY KEY(id) )";
+        sql = "CREATE TABLE YEAR"+ schoolYear +" (id INT NOT NULL, name VARCHAR(30), PRIMARY KEY(id) )";
         stmt.executeUpdate(sql);
         System.out.println("Table created sucessfully");
 

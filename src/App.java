@@ -2,6 +2,9 @@ public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
         Db.createDB();
-        Db.createTable();
+        for (int i=7; i<12; i++) {
+            Db.createTable(i);
+        }
+        
     }
 }
