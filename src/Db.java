@@ -19,9 +19,8 @@ public class Db {
             stmt.executeUpdate(sql);
             System.out.println("Database created sucessfully");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Database already exists");
         }
-
     } 
 
     public static void createTable() {
