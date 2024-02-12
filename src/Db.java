@@ -1,4 +1,5 @@
 import java.sql.Statement;
+import java.util.Scanner;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -80,6 +81,35 @@ public class Db {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void findByID() {
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        Statement stmt = conn.createStatement();
+        ) {
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Which year group would you like to search from?");
+            int yearGroupQuery = scanner.nextInt();
+            System.out.println("Which id would you like to select?");
+            int idQuery = scanner.nextInt();
+
+            String sql = "USE STUDENTS";
+            stmt.executeUpdate(sql);
+            sql = "SELECT * FROM YEAR" + yearGroupQuery +" WHERE id=" + idQuery;
+
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                System.out.printf("%s %s\n",id,name);
+            }
+
+            scanner.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
     }
     
 }

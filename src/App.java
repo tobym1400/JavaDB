@@ -9,6 +9,7 @@ public class App {
         for (int i=7; i<13; i++) {
             Db.printTable(i);
         }
+        Db.findByID();
         
     }
 }
