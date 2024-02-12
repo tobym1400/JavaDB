@@ -129,5 +129,40 @@ public class Db {
             e.printStackTrace();
         } 
     }
+
+    public static void findByName() {
+        //OPEN CONNECTION
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        Statement stmt = conn.createStatement();
+        ) {
+            //INIT
+            Scanner scanner = new Scanner(System.in);
+
+            //USER INPUT
+            System.out.println("Which year group would you like to search from?");
+            int yearGroupQuery = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println("Which name would you like to select?");
+            String nameQuery = scanner.nextLine();
+
+            //SELECT
+            String sql = "USE STUDENTS";
+            stmt.executeUpdate(sql);
+            sql = "SELECT * FROM YEAR" + yearGroupQuery +" WHERE name='" + nameQuery+"'";
+
+            //Results
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                System.out.printf("%s %s\n",id,name);
+            }
+
+            //CLOSE
+            scanner.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+    }
     
 }
