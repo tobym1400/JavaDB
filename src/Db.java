@@ -11,6 +11,7 @@ public class Db {
     static final String DB_URL = "jdbc:mysql://localhost/";
     static final String USER = "root";
     static final String PASS = "250410270317@Tm";
+    //mysql -u root -p;
 
     public static void createDB() {
         //OPEN CONNECTION
